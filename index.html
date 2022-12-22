@@ -19,18 +19,118 @@
   ></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    const root = document.getElementById("root");
-    const Title = () => (
-      <h3 id="title" onMouseEnter={() => console.log("hello~~")}>
-        IM_TITLE
-      </h3>
-    );
-    const Container = () => (
-      <div>
-        <Title />
-      </div>
-    );
-    ReactDOM.createRoot(root).render(<Container />); //V18
+    const root1 = document.getElementById("root");
+    // '분'을 '시간'으로 변환 // Flip버튼을 누르면 '시간'을 '분'으로 변환
+    function MinutesToHours() {
+      const [amount, setMount] = React.useState("");
+      const onChange = () => {
+        setMount(event.target.value);
+      };
+      const [inverter, setInverter] = React.useState(false);
+      const [hours, setHours] = React.useState("");
+      const onFlip = () => {
+        reset();
+        setInverter((current) => !current);
+      };
+      const reset = () => {
+        setMount(0);
+      };
+      return (
+        <div>
+          <h2>Minutes_To_Hours</h2>
+          <hr />
+          <div>
+            <label htmlFor="minutes">분(minute)</label>
+            <input
+              value={inverter ? amount * 60 : amount}
+              id="minutes"
+              placeholder="Minutes"
+              type="number"
+              onChange={onChange}
+              disabled={inverter}
+            />
+          </div>
+          <div>
+            <label htmlFor="hours">시간(hours)</label>
+            <input
+              value={inverter ? amount : Math.round(amount / 60)}
+              id="hours"
+              placeholder="Hours"
+              type="number"
+              onChange={onChange}
+              disabled={!inverter}
+            />
+          </div>
+          <button onClick={reset}>reset</button>
+          <button onClick={onFlip}>Flip</button>
+        </div>
+      );
+    }
+    //킬로미터(km)를 마일(mile)로 자동 변환 // flip버튼을 누르면 마일(mile)을 킬로미터(km)로 변환
+    function KmToMiles() {
+      const [distance, setDistance] = React.useState("");
+      const [flip, setFlip] = React.useState(false);
+      const onChange1 = (event) => {
+        setDistance(event.target.value);
+      };
+      const onFlip1 = () => {
+        reset1();
+        setFlip((current) => !current);
+      };
+      const reset1 = () => {
+        setDistance("");
+      };
+      return (
+        <div>
+          <h2>Km_To_Miles</h2>
+          <hr />
+          <div>
+            <label>킬로미터(km)</label>
+            <input
+              value={flip ? distance * 1.6093 : distance}
+              id="km"
+              disabled={flip}
+              onChange={onChange1}
+              type="number"
+              placeholder="km"
+            ></input>
+          </div>
+          <div>
+            <label>마일(Mile)</label>
+            <input
+              value={flip ? distance : distance / 1.609}
+              id="mile"
+              disabled={!flip}
+              onChange={onChange1}
+              type="number"
+              placeholder="mile"
+            ></input>
+          </div>
+          <button>reset</button>
+          <button onClick={onFlip1}>Flip</button>
+        </div>
+      );
+    }
+    function App() {
+      const [index, setIndex] = React.useState("2");
+      const onSelect = (event) => {
+        setIndex(event.target.value);
+      };
+      return (
+        <div>
+          <h1 className="title">Converter </h1>
+          <select value={index} onChange={onSelect}>
+            <option value="0">Choose</option>
+            <option value="1">Minutes_to_Hours</option>
+            <option value="2">Km_to_Miles</option>
+          </select>
+          {index === "0" ? "Choose Converter" : null}
+          {index === "1" ? <MinutesToHours /> : null}
+          {index === "2" ? <KmToMiles /> : null}
+        </div>
+      );
+    }
+    ReactDOM.createRoot(root1).render(<App />); //V18
     // ReactDOM.render(Container, root);  //V17
   </script>
 </html>
