@@ -1,0 +1,35 @@
+.Detail_container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    /* width: 100%; */
+    /* background-color: gray; */
+    font-weight: 400;
+    margin: 100px;
+    margin-top: 20px;
+    /* padding: 20px; */
+}
+
+.Detail_Movie_img {
+    width: 100%;
+}
+
+.Detail_Movie_header {
+    display: flex;
+    align-items: flex-start;
+}
+
+.Detail_Movie_Rate_row {
+    display: flex;
+    align-items: flex-start;
+}
+
+.Detail_Movie_Rate {
+    min-width: 100px;
+    padding: 12px;
+}
+
+.Detail_Movie_comment {
+    font-size: 18px;
+    font-weight: bold;
+}
