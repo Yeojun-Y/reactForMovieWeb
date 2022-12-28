@@ -1,11 +1,8 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DetailMovie from "../components/DetailMovie";
 
 function Detail() {
-  const x = useParams();
-  //   console.log(x);
-
   const { id } = useParams();
   //   console.log(id);
 
